@@ -29,7 +29,8 @@ export class ScreenLarge implements OnDestroy {
         }
     }
 
-    //normally angular unsubscribes authomatically from observables
+    //normally angular unsubscribes authomatically from observables but we need
+    //to do it manually
     ngOnDestroy() {
         this.screenSubscription.unsubscribe();
     }

@@ -1,10 +1,10 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 
 import { ScreenService } from '../services/screen.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Directive({selector: '[screenBelowLarge]'})
-export class ScreenBelowLarge {
+export class ScreenBelowLarge implements OnDestroy {
     private hasView: boolean = false;
     private screenSubscription: Subscription;
 
@@ -27,6 +27,12 @@ export class ScreenBelowLarge {
             this.hasView = false;
             this.viewContainer.clear();
         }
+    }
+
+    //normally angular unsubscribes authomatically from observables but we need
+    //to do it manually
+    ngOnDestroy() {
+        this.screenSubscription.unsubscribe();
     }
 
     onResize() {
