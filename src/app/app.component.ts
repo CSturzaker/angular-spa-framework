@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { FrameworkConfigService, FrameworkConfigSettings } from '../fw/services/framework-config.service';
+import { MenuService } from '../fw/services/menu.service';
+import { initialMenuItems } from './app.menu';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,8 @@ import { FrameworkConfigService, FrameworkConfigSettings } from '../fw/services/
 })
 export class AppComponent {
   
-  constructor(private frameworkConfigService: FrameworkConfigService) {
+  constructor(private frameworkConfigService: FrameworkConfigService,
+              private menuService: MenuService) {
 
     let config:FrameworkConfigSettings = {
       socialIcons: [
@@ -22,6 +25,10 @@ export class AppComponent {
       showStatusBarBreakPoint: 800
     };
 
+    //set framework config
     frameworkConfigService.configure(config);
+
+    //set menu items
+    menuService.items = initialMenuItems;
   }
 }

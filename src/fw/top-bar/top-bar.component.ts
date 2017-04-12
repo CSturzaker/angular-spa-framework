@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FrameworkConfigService } from '../services/framework-config.service';
 @Component({
   selector: 'fw-top-bar',
   templateUrl: './top-bar.component.html',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private frameworkConfigService: FrameworkConfigService) { }
 
   ngOnInit() {
   }
